@@ -449,24 +449,17 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <span id="cb3-6"><a href=""></a>  \(x) <span class="fu">read_delim</span>(x, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
 <span id="cb3-7"><a href=""></a>         <span class="fu">select</span>(District, PollingPlaceName, BPNumber, CandidateName, PrefCounted)</span>
 <span id="cb3-8"><a href=""></a>) <span class="sc">|&gt;</span></span>
-<span id="cb3-9"><a href=""></a>  <span class="fu">bind_rows</span>()</span>
-<span id="cb3-10"><a href=""></a></span>
-<span id="cb3-11"><a href=""></a>election</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-9"><a href=""></a>  <span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href=""></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12,203,709 × 5
-   District PollingPlaceName BPNumber CandidateName PrefCounted
-   &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;               &lt;dbl&gt;
- 1 Albury   Albury High      9996     CLANCY Justin           1
- 2 Albury   Albury High      9997     CLANCY Justin           1
- 3 Albury   Albury High      9998     CLANCY Justin           1
- 4 Albury   Albury High      9999     CLANCY Justin           1
- 5 Albury   Albury High      10000    CLANCY Justin           1
- 6 Albury   Albury High      10001    CLANCY Justin           1
- 7 Albury   Albury High      10002    CLANCY Justin           1
- 8 Albury   Albury High      10003    CLANCY Justin           1
- 9 Albury   Albury High      10004    CLANCY Justin           1
-10 Albury   Albury High      10005    CLANCY Justin           1
-# ℹ 12,203,699 more rows</code></pre>
+  District PollingPlaceName BPNumber CandidateName PrefCounted
+  &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;    &lt;chr&gt;               &lt;dbl&gt;
+1 Albury   Albury High      9996     CLANCY Justin           1
+2 Albury   Albury High      9997     CLANCY Justin           1
+3 Albury   Albury High      9998     CLANCY Justin           1
+4 Albury   Albury High      9999     CLANCY Justin           1
+# ℹ 12,203,705 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -478,26 +471,49 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <span id="cb5-3"><a href=""></a>    <span class="fu">long_preferences</span>(vote,</span>
 <span id="cb5-4"><a href=""></a>                     <span class="at">id_cols =</span> <span class="fu">c</span>(District, PollingPlaceName, BPNumber),</span>
 <span id="cb5-5"><a href=""></a>                     <span class="at">item_col =</span> CandidateName,</span>
-<span id="cb5-6"><a href=""></a>                     <span class="at">rank_col =</span> PrefCounted)</span>
-<span id="cb5-7"><a href=""></a>election <span class="sc">|&gt;</span></span>
-<span id="cb5-8"><a href=""></a>    <span class="fu">select</span>(vote) <span class="sc">|&gt;</span></span>
-<span id="cb5-9"><a href=""></a>    <span class="fu">sample_n</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-6"><a href=""></a>                     <span class="at">rank_col =</span> PrefCounted) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href=""></a>    <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 10 × 1
-# ℹ 1 more variable: vote &lt;prefrncs&gt;</code></pre>
+<pre><code># A tibble: 4,701,930 × 4
+  District PollingPlaceName BPNumber            vote
+  &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;         &lt;prefrncs&gt;
+1 Albury   Absent           28372    [CLANCY Justin]
+2 Albury   Absent           28373    [CLANCY Justin]
+3 Albury   Absent           28374    [CLANCY Justin]
+4 Albury   Absent           28375    [CLANCY Justin]
+5 Albury   Absent           28376    [CLANCY Justin]
+# ℹ 4,701,925 more rows</code></pre>
 </div>
 </div>
 </section>
 <section id="a-quick-demo-3" class="slide level2">
 <h2>A “quick” demo?</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a>election <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href=""></a>    <span class="fu">select</span>(vote) <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href=""></a>    <span class="fu">sample_n</span>(<span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 1
+                                  vote
+                            &lt;prefrncs&gt;
+1                       [BOOYENS Josh]
+2                   [HENSKENS Alister]
+3                             [VO Tri]
+4                       [LAYZELL Dave]
+5 [VOLTZ Lynda &gt; MORKOS DOUAIHY Julie]</code></pre>
+</div>
+</div>
+</section>
+<section id="a-quick-demo-4" class="slide level2">
+<h2>A “quick” demo?</h2>
 <p>A perfect match with <a href="https://pastvtr.elections.nsw.gov.au/SG2301/LA/state/elected">the official results</a>, and much faster than I would have previously thought possible.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href=""></a><span class="co"># Format the preferences with prefio</span></span>
-<span id="cb7-2"><a href=""></a>election <span class="sc">|&gt;</span></span>
-<span id="cb7-3"><a href=""></a>    <span class="fu">summarise</span>(</span>
-<span id="cb7-4"><a href=""></a>        <span class="at">Winner =</span> <span class="fu">pref_irv</span>(vote)<span class="sc">$</span>winner,</span>
-<span id="cb7-5"><a href=""></a>        <span class="at">.by =</span> District</span>
-<span id="cb7-6"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href=""></a><span class="co"># Format the preferences with prefio</span></span>
+<span id="cb9-2"><a href=""></a>election <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href=""></a>    <span class="fu">summarise</span>(</span>
+<span id="cb9-4"><a href=""></a>        <span class="at">Winner =</span> <span class="fu">pref_irv</span>(vote)<span class="sc">$</span>winner,</span>
+<span id="cb9-5"><a href=""></a>        <span class="at">.by =</span> District</span>
+<span id="cb9-6"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 93 × 2
    District       Winner         
@@ -515,6 +531,17 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 # ℹ 83 more rows</code></pre>
 </div>
 </div>
+</section>
+<section id="where-to-next" class="slide level2">
+<h2>Where to next?</h2>
+<ul>
+<li class="fragment"><p>I’d like to integrate this back into <code>PlackettLuce</code>, where it was born.</p></li>
+<li class="fragment"><p>There are likely many features needed to make this useful to people other than me.</p></li>
+<li class="fragment"><p>If you work with preferential data, give it a go and let me know of any features which may be useful to add!</p></li>
+</ul>
+</section>
+<section id="thanks-for-listening" class="title-slide slide level1 center">
+<h1>🎉 Thanks for listening!</h1>
 
 </section>
     </div>
