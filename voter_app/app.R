@@ -7,14 +7,16 @@ library(digest)
 library(tibble)
 library(readr)
 
+# Prompt
+prmpt <- "What is the most effective coding assistant?"
+
 # Items to vote for.
 items <- c(
-  "Bread",
-  "Apples",
-  "Avocado",
-  "Bananas",
-  "Oranges",
-  "Broccoli"
+  "OpenAI GPT-5",
+  "Claude Opus 4",
+  "Gemini 2.5",
+  "my supervisors",
+  "my students"
 )
 
 # CSV file to record responses
@@ -45,6 +47,8 @@ add_response <- function(response) {
 
 ui <- fluidPage(
   titlePanel("Place your vote!"),
+  br(),
+  h1(prmpt),
   br(),
   p("Rank items from most preferred (top) to least preferred (bottom)."),
   
