@@ -1,0 +1,11 @@
+---
+title: "Presentation with live vote collection"
+author: Floyd Everest
+organization: Econometrics and Business Statistics
+format: revealjs
+---
+
+
+## Submit your vote
+
+QR code with link to public url (via cloudflare) for the shiny app.
