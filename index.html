@@ -196,14 +196,14 @@
 
 <div class="columns">
 <div class="column">
-<br> <br>
+<p><br> <br></p>
 <h1>
 <code>prefio</code>
 </h1>
 </div><div class="column">
 <p><img data-src="https://github.com/fleverest/prefio/raw/refs/heads/main/man/figures/prefio.svg" width="300"></p>
 </div></div>
-<br> <br>
+<p><br> <br></p>
 <h2>
 Working with preferential data in R
 </h2>
@@ -360,7 +360,7 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <li class="fragment">Herbal tea (tea has too much caffeine)</li>
 </ul>
 </div><div class="column">
-<div id="" class="qrcode"></div>
+<p></p><div id="" class="qrcode"></div>
 <script type="text/javascript">
 (function() {
   var script = document.currentScript;
@@ -369,18 +369,31 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
   script.remove();
 })();
 </script>
-    
-<p><a href="https://vote.floydeverest.com/">vote.floydeverest.com</a></p>
+     <a href="https://vote.floydeverest.com/">vote.floydeverest.com</a><p></p>
 </div></div>
 </section>
-<section id="how-did-prefio-come-about" class="slide level2">
-<h2>How did <code>prefio</code> come about?</h2>
+<section id="the-history-of-prefio" class="slide level2">
+<h2>The history of <code>prefio</code></h2>
+<div class="columns">
+<div class="column" style="width:60%;">
 <ul>
-<li class="fragment">I wanted to make some NSW election datasets easier to use for “upstream research tasks”</li>
-<li class="fragment">This involved converting them to standard <a href="https://preflib.github.io/PrefLib-Jekyll/">PrefLib</a> formats</li>
-<li class="fragment">So I “stole” some of Heather’s code from <code>PlackettLuce</code> for loading PrefLib data and handling preferences in R</li>
-<li class="fragment">Since then, I’ve adapted it to mesh nicely with the tidyverse ecosystem</li>
+<li class="fragment">I wanted to make NSW elections accessible</li>
+<li class="fragment">Integrating with the <a href="https://preflib.github.io/PrefLib-Jekyll/">PrefLib</a> database</li>
+<li class="fragment">“stole” Heather’s code from <code>PlackettLuce</code> for loading PrefLib data and handling preferences</li>
+<li class="fragment">Adapted it to mesh nicely with the tidyverse ecosystem</li>
 </ul>
+</div><div class="column" style="width:40%;">
+<p></p><div id="" class="qrcode"></div>
+<script type="text/javascript">
+(function() {
+  var script = document.currentScript;
+  var qrcode = script.previousElementSibling;
+  qrcode.qrcode = new QRCode(qrcode, {"colorDark":"#000000","colorLight":"#ffffff","height":"200","text":"https://vote.floydeverest.com","width":"200"});
+  script.remove();
+})();
+</script>
+     <a href="https://vote.floydeverest.com/">vote.floydeverest.com</a><p></p>
+</div></div>
 </section>
 <section id="a-quick-demo" class="slide level2">
 <h2>A “quick” demo</h2>
@@ -499,10 +512,10 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <span id="cb7-4"><a href=""></a>  <span class="fu">sample_n</span>(<span class="dv">5</span>) <span class="sc">|&gt;</span></span>
 <span id="cb7-5"><a href=""></a>  knitr<span class="sc">::</span><span class="fu">kable</span>(</span>
 <span id="cb7-6"><a href=""></a>    <span class="at">format =</span> <span class="st">"html"</span>,</span>
-<span id="cb7-7"><a href=""></a>    <span class="at">table.attr =</span> <span class="st">'style="font-size: 0.5em"'</span></span>
+<span id="cb7-7"><a href=""></a>    <span class="at">table.attr =</span> <span class="st">'style="font-size: 0.6em; width: 80%;"'</span></span>
 <span id="cb7-8"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<table class="caption-top" data-quarto-postprocess="true" style="font-size: 0.5em">
+<table class="caption-top" data-quarto-postprocess="true" style="font-size: 0.6em; width: 80%;">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">vote</th>

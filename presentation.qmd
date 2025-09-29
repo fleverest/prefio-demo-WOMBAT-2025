@@ -7,22 +7,26 @@ format:
     incremental: true
 editor: visual
 ---
-::: {.columns}
-::: {.column}
-<br>
-<br>
-<h1> `prefio` </h1>
-:::
-::: {.column}
-![](https://github.com/fleverest/prefio/raw/refs/heads/main/man/figures/prefio.svg){width=300}
-:::
+
+::::: columns
+::: column
+<br> <br>
+
+<h1>`prefio`</h1>
 :::
 
-<br>
-<br>
-<h2> Working with preferential data in R </h2>
+::: column
+![](https://github.com/fleverest/prefio/raw/refs/heads/main/man/figures/prefio.svg){width="300"}
+:::
+:::::
+
+<br> <br>
+
+<h2>Working with preferential data in R</h2>
+
 <hr>
-<p> Floyd Everest, Heather Turner and Damjan Vukcevic </p>
+
+<p>Floyd Everest, Heather Turner and Damjan Vukcevic</p>
 
 ```{r setup}
 #| include: false
@@ -33,26 +37,26 @@ set.seed(2025-9-30)
 
 ## What is preferential data?
 
-::::::columns
-:::{.column width="30%"}
+::::: columns
+::: {.column width="30%"}
 [![A sample HoR ballot, courtesy of the AEC](./hor-paper.jpg){fig-alt="A sample ballot for ranking Australian house of representatives candidates." width="80%"}](https://www.aec.gov.au/voting/how_to_vote/voting_hor.htm)
 :::
-:::{.column width="70%"}
-- One entry = a *ranking* among a common set of *items*.
 
-- e.g., ballots for the house of reps!
+::: {.column width="70%"}
+-   One entry = a *ranking* among a common set of *items*.
 
-- "computational social choice, recommender systems, data mining, machine learning, combinatorial optimization, to name just a few" --- [PrefLib](https://preflib.github.io/PrefLib-Jekyll/)
+-   e.g., ballots for the house of reps!
 
-- Other kinds of preferences can be incomplete or even include ties
+-   "computational social choice, recommender systems, data mining, machine learning, combinatorial optimization, to name just a few" --- [PrefLib](https://preflib.github.io/PrefLib-Jekyll/)
+
+-   Other kinds of preferences can be incomplete or even include ties
 :::
-::::::
-
+:::::
 
 ## What does tabular preferential data look like?
 
-:::::: {.columns}
-::: {.column}
+::::: columns
+::: column
 ```{r echo = FALSE, results = 'asis'}
 long <- tribble(
   ~ID, ~VoterLocation, ~Candidate, ~Rank,
@@ -73,7 +77,8 @@ knitr::kable(
 )
 ```
 :::
-::: {.column}
+
+::: column
 ```{r echo = FALSE, results = 'asis'}
 wide <- tribble(
   ~ID, ~VoterLocation, ~Allie, ~Beatriz, ~Charles,
@@ -89,50 +94,54 @@ knitr::kable(
 )
 ```
 :::
-::::::
-
+:::::
 
 ## What does tabular preferential data look like?
 
-- [Wide format data](./aec-senate-wide-data.csv) from the most recent Federal election (2025 Senators for ACT)
+-   [Wide format data](./aec-senate-wide-data.csv) from the most recent Federal election (2025 Senators for ACT)
 
-- [Long format data](./nsw_aec_long_data.tsv) from the most recent NSW legislative assembly election (2023 member for Albury)
-
+-   [Long format data](./nsw_aec_long_data.tsv) from the most recent NSW legislative assembly election (2023 member for Albury)
 
 ## Let's collect some votes!
 
 Rank these café orders from most to least preferred
 
-::: {.columns}
-::: {.column}
-- Latte
-- Iced latte
-- Flat white
-- Black coffee
-- Cold brew
-- Tea (coffee has too much caffeine)
-- Herbal tea (tea has too much caffeine)
-:::
-::: {.column}
-{{< qrcode https://vote.floydeverest.com width=300 height=300 >}}
-[vote.floydeverest.com](https://vote.floydeverest.com/)
-:::
+::::: columns
+::: column
+-   Latte
+-   Iced latte
+-   Flat white
+-   Black coffee
+-   Cold brew
+-   Tea (coffee has too much caffeine)
+-   Herbal tea (tea has too much caffeine)
 :::
 
+::: column
+{{< qrcode https://vote.floydeverest.com width=300 height=300 >}} [vote.floydeverest.com](https://vote.floydeverest.com/)
+:::
+:::::
 
-## How did `prefio` come about?
+## The history of `prefio`
 
-- I wanted to make some NSW election datasets easier to use for "upstream research tasks"
-- This involved converting them to standard [PrefLib](https://preflib.github.io/PrefLib-Jekyll/) formats
-- So I "stole" some of Heather's code from `PlackettLuce` for loading PrefLib data and handling preferences in R
-- Since then, I've adapted it to mesh nicely with the tidyverse ecosystem
+::::: columns
+:::{.column width="60%"}
+-   I wanted to make NSW elections accessible
+-   Integrating with the [PrefLib](https://preflib.github.io/PrefLib-Jekyll/) database
+-   "stole" Heather's code from `PlackettLuce` for loading PrefLib data and handling preferences
+-   Adapted it to mesh nicely with the tidyverse ecosystem
+:::
+:::{.column width="40%"}
+{{< qrcode https://vote.floydeverest.com width=200 height=200 >}} [vote.floydeverest.com](https://vote.floydeverest.com/)
+:::
+:::::
 
 
 ## A "quick" demo
 
 Let's take a quick look at the [2023 New South Wales legislative assembly election](https://pastvtr.elections.nsw.gov.au/sg2301/la/results).
 
-. . . 
+. . .
 
 ```{r echo=TRUE}
 list.files("nswla_data/")
@@ -177,10 +186,9 @@ election |>
   sample_n(5) |>
   knitr::kable(
     format = "html",
-    table.attr = 'style="font-size: 0.5em"'
+    table.attr = 'style="font-size: 0.6em; width: 80%;"'
   )
 ```
-
 
 ## A "quick" demo
 
@@ -195,15 +203,13 @@ election |>
     )
 ```
 
-
 ## Where to next?
 
-- I'd like to integrate this back into `PlackettLuce`, where it was born.
+-   I'd like to integrate this back into `PlackettLuce`, where it was born.
 
-- There are likely many features needed to make this useful to people other than me.
+-   There are likely many features needed to make this useful to people other than me.
 
-- If you work with preferential data, give it a go and let me know of any features which may be useful to add!
-
+-   If you work with preferential data, give it a go and let me know of any features which may be useful to add!
 
 # The results
 
