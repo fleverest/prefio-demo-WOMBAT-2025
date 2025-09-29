@@ -1,7 +1,7 @@
 ---
 format: 
   revealjs:
-    footer: "[vote.floydeverest.com](https://vote.floydeverest.com/)"
+    footer: "[github.com/fleverest/prefio-demo-WOMBAT-2025](https://github.com/fleverest/prefio-demo-WOMBAT-2025/)"
     theme: []
     slide-number: c/t
     incremental: true
@@ -28,7 +28,7 @@ editor: visual
 #| include: false
 library(prefio)
 library(tidyverse)
-set.seed(2025-9-31)
+set.seed(2025-9-30)
 ```
 
 ## What is preferential data?
@@ -101,25 +101,24 @@ knitr::kable(
 
 ## Let's collect some votes!
 
-What is the most effective coding assistant?
+Rank these café orders from most to least preferred
 
 ::: {.columns}
 ::: {.column}
-- OpenAI GPT-5
-
-- Claude Opus 4
-
-- Gemini 2.5
-
-- my supervisors
-
-- my students
+- Latte
+- Iced latte
+- Flat white
+- Black coffee
+- Cold brew
+- Tea (coffee has too much caffeine)
+- Herbal tea (tea has too much caffeine)
 :::
 ::: {.column}
 {{< qrcode https://vote.floydeverest.com width=300 height=300 >}}
 [vote.floydeverest.com](https://vote.floydeverest.com/)
 :::
 :::
+
 
 ## How did `prefio` come about?
 
@@ -128,7 +127,8 @@ What is the most effective coding assistant?
 - So I "stole" some of Heather's code from `PlackettLuce` for loading PrefLib data and handling preferences in R
 - Since then, I've adapted it to mesh nicely with the tidyverse ecosystem
 
-## A "quick" demo?
+
+## A "quick" demo
 
 Let's take a quick look at the [2023 New South Wales legislative assembly election](https://pastvtr.elections.nsw.gov.au/sg2301/la/results).
 
@@ -138,7 +138,7 @@ Let's take a quick look at the [2023 New South Wales legislative assembly electi
 list.files("nswla_data/")
 ```
 
-## A "quick" demo?
+## A "quick" demo
 
 ```{r echo=TRUE}
 nsw_election_files <- list.files("nswla_data/", pattern = "\\.zip$", full.names = TRUE)
@@ -146,39 +146,45 @@ nsw_election_files <- list.files("nswla_data/", pattern = "\\.zip$", full.names 
 # Load the entire election with readr + dplyr
 election <- lapply(
   nsw_election_files,
-  \(x) read_delim(x, delim = "\t", show_col_types = FALSE) |>
-         select(District, PollingPlaceName, BPNumber, CandidateName, PrefCounted)
+  function(x) {
+    read_delim(x, delim = "\t", show_col_types = FALSE) |>
+      select(District, BPNumber, CandidateName, PrefCounted)
+  }
 ) |>
   bind_rows() |>
   print(n = 4)
 ```
 
-## A "quick" demo?
+## A "quick" demo
 
 ```{r echo=TRUE}
 # Format the preferences with prefio
 election <- election |>
     long_preferences(vote,
-                     id_cols = c(District, PollingPlaceName, BPNumber),
+                     id_cols = c(District, BPNumber),
                      item_col = CandidateName,
                      rank_col = PrefCounted) |>
     print(n = 5)
-
 ```
 
 
-## A "quick" demo?
+## A "quick" demo
 
 ```{r echo=TRUE}
 election |>
-    select(vote) |>
-    sample_n(5)
+  group_by(vote) |>
+  summarise(frequency = n()) |>
+  sample_n(5) |>
+  knitr::kable(
+    format = "html",
+    table.attr = 'style="font-size: 0.5em"'
+  )
 ```
 
 
-## A "quick" demo?
+## A "quick" demo
 
-A perfect match with [the official results](https://pastvtr.elections.nsw.gov.au/SG2301/LA/state/elected), and much faster than I would have previously thought possible.
+Compare IRV results with [the official results](https://pastvtr.elections.nsw.gov.au/SG2301/LA/state/elected), and much faster than I would have previously thought possible.
 
 ```{r echo=TRUE}
 # Format the preferences with prefio
@@ -198,5 +204,7 @@ election |>
 
 - If you work with preferential data, give it a go and let me know of any features which may be useful to add!
 
+
+# The results
 
 # 🎉 Thanks for listening!

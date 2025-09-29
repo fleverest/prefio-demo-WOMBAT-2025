@@ -8,15 +8,17 @@ library(tibble)
 library(readr)
 
 # Prompt
-prmpt <- "What is the most effective coding assistant?"
+prmpt <- "Rank these café orders from most to least preferred."
 
 # Items to vote for.
 items <- c(
-  "OpenAI GPT-5",
-  "Claude Opus 4",
-  "Gemini 2.5",
-  "my supervisors",
-  "my students"
+  "Latte",
+  "Iced latte",
+  "Flat white",
+  "Black coffee",
+  "Cold brew",
+  "Tea (coffee has too much caffeine)",
+  "Herbal tea (tea has too much caffeine)"
 )
 
 # CSV file to record responses
@@ -48,7 +50,7 @@ add_response <- function(response) {
 ui <- fluidPage(
   titlePanel("Place your vote!"),
   br(),
-  h1(prmpt),
+  h2(prmpt),
   br(),
   p("Rank items from most preferred (top) to least preferred (bottom)."),
   
@@ -80,7 +82,9 @@ ui <- fluidPage(
   br(), br(),
   p("Submissions are anonymous and responses will be used for demonstration purposes only."),
   verbatimTextOutput("results"),
-  verbatimTextOutput("status")
+  verbatimTextOutput("status"),
+  br(), br(),
+  a("Check out the code on GitHub", href="https://github.com/fleverest/shiny-preferential-voting")
 )
 
 server <- function(input, output) {
