@@ -213,4 +213,31 @@ election |>
 
 # The results
 
+## Democratically confirmed best coffee order
+
+```{r echo=TRUE}
+votes <- read_csv("voter_app/data/responses.csv") |>
+  long_preferences(vote,
+                   id_cols = c(device_hash, timestamp),
+                   rank_col = rank,
+                   item_col = item) |>
+  pull(vote)
+
+pref_irv(votes)$winner
+```
+
+
+## Distribution of preferences
+
+```{r echo = FALSE}
+library(kableExtra)
+pref_irv(votes)$rounds |>
+  reduce(left_join, by = "candidate") |>
+  rename_with(~ c("Candidate", paste("Round", 1:(length(.) - 1)))) |>
+  mutate(across(everything(), ~replace_na(as.character(.), ""))) |>
+  kbl(format.args = list(na.encode = TRUE)) |>
+  kable_styling(font_size = 30)
+```
+
+
 # 🎉 Thanks for listening!

@@ -186,6 +186,8 @@
       margin-right: 0; 
     }
   </style>
+  <script src="presentation_files/libs/kePrint-0.0.1/kePrint.js"></script>
+  <link href="presentation_files/libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 </head>
 <body class="quarto-light">
   <div class="reveal">
@@ -563,11 +565,106 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <li class="fragment"><p>If you work with preferential data, give it a go and let me know of any features which may be useful to add!</p></li>
 </ul>
 </section>
+<section>
 <section id="the-results" class="title-slide slide level1 center">
 <h1>The results</h1>
 
 </section>
+<section id="democratically-confirmed-best-coffee-order" class="slide level2">
+<h2>Democratically confirmed best coffee order</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href=""></a>votes <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"voter_app/data/responses.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href=""></a>  <span class="fu">long_preferences</span>(vote,</span>
+<span id="cb10-3"><a href=""></a>                   <span class="at">id_cols =</span> <span class="fu">c</span>(device_hash, timestamp),</span>
+<span id="cb10-4"><a href=""></a>                   <span class="at">rank_col =</span> rank,</span>
+<span id="cb10-5"><a href=""></a>                   <span class="at">item_col =</span> item) <span class="sc">|&gt;</span></span>
+<span id="cb10-6"><a href=""></a>  <span class="fu">pull</span>(vote)</span>
+<span id="cb10-7"><a href=""></a></span>
+<span id="cb10-8"><a href=""></a><span class="fu">pref_irv</span>(votes)<span class="sc">$</span>winner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Latte"</code></pre>
+</div>
+</div>
+</section>
+<section id="distribution-of-preferences" class="slide level2">
+<h2>Distribution of preferences</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table caption-top" data-quarto-postprocess="true" style="font-size: 30px; margin-left: auto; margin-right: auto;">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Candidate</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Round 1</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Round 2</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Round 3</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Round 4</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Round 5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Black coffee</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Flat white</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">19</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iced latte</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">8</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Latte</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">39</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cold brew</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tea (coffee has too much caffeine)</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Matcha</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">12</td>
+<td style="text-align: left;">13</td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
 
+
+</div>
+</div>
+</section></section>
 <section id="thanks-for-listening" class="title-slide slide level1 center">
 <h1>🎉 Thanks for listening!</h1>
 
