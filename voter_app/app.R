@@ -17,8 +17,8 @@ items <- c(
   "Flat white",
   "Black coffee",
   "Cold brew",
-  "Tea (coffee has too much caffeine)",
-  "Herbal tea (tea has too much caffeine)"
+  "Matcha",
+  "Tea (coffee has too much caffeine)"
 )
 
 # CSV file to record responses

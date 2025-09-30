@@ -233,6 +233,8 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 </section>
 <section id="what-does-tabular-preferential-data-look-like" class="slide level2">
 <h2>What does tabular preferential data look like?</h2>
+<p>Wangaratta: (Charles, Beatriz, Allie), Geelong: (Allie, Beatriz)</p>
+<div class="fragment">
 <div class="columns">
 <div class="column">
 <table class="caption-top" data-quarto-postprocess="true" style="font-size: 0.7em; width: 70%;">
@@ -247,48 +249,30 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Melbourne</td>
-<td style="text-align: left;">Allie</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Melbourne</td>
-<td style="text-align: left;">Beatriz</td>
-<td style="text-align: right;">2</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Melbourne</td>
-<td style="text-align: left;">Charles</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Wangaratta</td>
 <td style="text-align: left;">Allie</td>
 <td style="text-align: right;">3</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Wangaratta</td>
 <td style="text-align: left;">Beatriz</td>
 <td style="text-align: right;">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Wangaratta</td>
 <td style="text-align: left;">Charles</td>
 <td style="text-align: right;">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">Geelong</td>
 <td style="text-align: left;">Allie</td>
 <td style="text-align: right;">2</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">Geelong</td>
 <td style="text-align: left;">Beatriz</td>
@@ -312,20 +296,13 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">Melbourne</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">3</td>
-</tr>
-<tr class="even">
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">Wangaratta</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td style="text-align: right;">3</td>
 <td style="text-align: left;">Geelong</td>
 <td style="text-align: right;">2</td>
@@ -337,6 +314,7 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 
 
 </div></div>
+</div>
 </section>
 <section id="what-does-tabular-preferential-data-look-like-1" class="slide level2">
 <h2>What does tabular preferential data look like?</h2>
@@ -356,8 +334,8 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <li class="fragment">Flat white</li>
 <li class="fragment">Black coffee</li>
 <li class="fragment">Cold brew</li>
+<li class="fragment">Matcha</li>
 <li class="fragment">Tea (coffee has too much caffeine)</li>
-<li class="fragment">Herbal tea (tea has too much caffeine)</li>
 </ul>
 </div><div class="column">
 <p></p><div id="" class="qrcode"></div>
@@ -456,18 +434,16 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <section id="a-quick-demo-1" class="slide level2">
 <h2>A “quick” demo</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a>nsw_election_files <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"nswla_data/"</span>, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.zip$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb3-2"><a href=""></a></span>
-<span id="cb3-3"><a href=""></a><span class="co"># Load the entire election with readr + dplyr</span></span>
-<span id="cb3-4"><a href=""></a>election <span class="ot">&lt;-</span> <span class="fu">lapply</span>(</span>
-<span id="cb3-5"><a href=""></a>  nsw_election_files,</span>
-<span id="cb3-6"><a href=""></a>  <span class="cf">function</span>(x) {</span>
-<span id="cb3-7"><a href=""></a>    <span class="fu">read_delim</span>(x, <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>, <span class="at">show_col_types =</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
-<span id="cb3-8"><a href=""></a>      <span class="fu">select</span>(District, BPNumber, CandidateName, PrefCounted)</span>
-<span id="cb3-9"><a href=""></a>  }</span>
-<span id="cb3-10"><a href=""></a>) <span class="sc">|&gt;</span></span>
-<span id="cb3-11"><a href=""></a>  <span class="fu">bind_rows</span>() <span class="sc">|&gt;</span></span>
-<span id="cb3-12"><a href=""></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href=""></a><span class="co"># Load the entire election with readr + purrr</span></span>
+<span id="cb3-2"><a href=""></a>election <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">"nswla_data/"</span>, <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">.zip$"</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href=""></a>  <span class="fu">map</span>(<span class="cf">function</span>(x) {</span>
+<span id="cb3-4"><a href=""></a>    <span class="fu">read_delim</span>(x,</span>
+<span id="cb3-5"><a href=""></a>               <span class="at">delim =</span> <span class="st">"</span><span class="sc">\t</span><span class="st">"</span>,</span>
+<span id="cb3-6"><a href=""></a>               <span class="at">show_col_types =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb3-7"><a href=""></a>               <span class="at">col_select =</span> <span class="fu">c</span>(District, BPNumber, CandidateName, PrefCounted))</span>
+<span id="cb3-8"><a href=""></a>  }) <span class="sc">|&gt;</span></span>
+<span id="cb3-9"><a href=""></a>  <span class="fu">list_rbind</span>() <span class="sc">|&gt;</span></span>
+<span id="cb3-10"><a href=""></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 12,203,709 × 4
   District BPNumber CandidateName PrefCounted
@@ -485,11 +461,11 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href=""></a><span class="co"># Format the preferences with prefio</span></span>
 <span id="cb5-2"><a href=""></a>election <span class="ot">&lt;-</span> election <span class="sc">|&gt;</span></span>
-<span id="cb5-3"><a href=""></a>    <span class="fu">long_preferences</span>(vote,</span>
-<span id="cb5-4"><a href=""></a>                     <span class="at">id_cols =</span> <span class="fu">c</span>(District, BPNumber),</span>
-<span id="cb5-5"><a href=""></a>                     <span class="at">item_col =</span> CandidateName,</span>
-<span id="cb5-6"><a href=""></a>                     <span class="at">rank_col =</span> PrefCounted) <span class="sc">|&gt;</span></span>
-<span id="cb5-7"><a href=""></a>    <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-3"><a href=""></a>  <span class="fu">long_preferences</span>(vote,</span>
+<span id="cb5-4"><a href=""></a>                   <span class="at">id_cols =</span> <span class="fu">c</span>(District, BPNumber),</span>
+<span id="cb5-5"><a href=""></a>                   <span class="at">item_col =</span> CandidateName,</span>
+<span id="cb5-6"><a href=""></a>                   <span class="at">rank_col =</span> PrefCounted) <span class="sc">|&gt;</span></span>
+<span id="cb5-7"><a href=""></a>  <span class="fu">print</span>(<span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4,701,930 × 3
   District BPNumber            vote
@@ -552,14 +528,14 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 </section>
 <section id="a-quick-demo-4" class="slide level2">
 <h2>A “quick” demo</h2>
-<p>Compare IRV results with <a href="https://pastvtr.elections.nsw.gov.au/SG2301/LA/state/elected">the official results</a>, and much faster than I would have previously thought possible.</p>
+<p>Compare our computed results with <a href="https://pastvtr.elections.nsw.gov.au/SG2301/LA/state/elected">the official results</a> (much faster than I would have previously thought possible).</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href=""></a><span class="co"># Format the preferences with prefio</span></span>
 <span id="cb8-2"><a href=""></a>election <span class="sc">|&gt;</span></span>
-<span id="cb8-3"><a href=""></a>    <span class="fu">summarise</span>(</span>
-<span id="cb8-4"><a href=""></a>        <span class="at">Winner =</span> <span class="fu">pref_irv</span>(vote)<span class="sc">$</span>winner,</span>
-<span id="cb8-5"><a href=""></a>        <span class="at">.by =</span> District</span>
-<span id="cb8-6"><a href=""></a>    )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href=""></a>  <span class="fu">summarise</span>(</span>
+<span id="cb8-4"><a href=""></a>    <span class="at">Winner =</span> <span class="fu">pref_irv</span>(vote)<span class="sc">$</span>winner,</span>
+<span id="cb8-5"><a href=""></a>    <span class="at">.by =</span> District</span>
+<span id="cb8-6"><a href=""></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 93 × 2
    District       Winner         
@@ -582,6 +558,7 @@ Floyd Everest, Heather Turner and Damjan Vukcevic
 <h2>Where to next?</h2>
 <ul>
 <li class="fragment"><p>I’d like to integrate this back into <code>PlackettLuce</code>, where it was born.</p></li>
+<li class="fragment"><p>It would be great to directly produce visualisations for preferences in the future.</p></li>
 <li class="fragment"><p>There are likely many features needed to make this useful to people other than me.</p></li>
 <li class="fragment"><p>If you work with preferential data, give it a go and let me know of any features which may be useful to add!</p></li>
 </ul>
